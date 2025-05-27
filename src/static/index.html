@@ -15,6 +15,7 @@
     <main>
       <section id="activities-container">
         <h3>Available Activities</h3>
+        <div id="calendar-view" style="margin-bottom:20px;"></div>
         <div id="activities-list">
           <!-- Activities will be loaded here -->
           <p>Loading activities...</p>
@@ -46,5 +47,21 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+      // Simple calendar rendering (for demo)
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("/activities").then(r => r.json()).then(activities => {
+          const calendar = document.getElementById("calendar-view");
+          let html = '<strong>Upcoming Activities Calendar</strong><ul style="margin-top:8px;">';
+          Object.entries(activities).forEach(([name, details]) => {
+            if(details.date) {
+              html += `<li><b>${details.date}</b>: ${name} (${details.location || 'TBA'})</li>`;
+            }
+          });
+          html += '</ul>';
+          calendar.innerHTML = html;
+        });
+      });
+    </script>
   </body>
 </html>

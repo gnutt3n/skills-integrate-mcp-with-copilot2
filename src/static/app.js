@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
+          <p><strong>Date:</strong> ${details.date || 'TBA'}</p>
+          <p><strong>Location:</strong> ${details.location || 'TBA'}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <div class="participants-container">
             ${participantsHTML}
